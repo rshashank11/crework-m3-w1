@@ -31,7 +31,6 @@ function SignIn() {
                 mailInput.classList.add("focus:border-btnGreen")
                 mailValid = true;
             } else {
-                mailInput.classList.remove("bg-black1")
                 mailInput.classList.remove("border-borderGray1")
                 mailInput.classList.remove("bg-black1")
                 mailInput.classList.remove("border-linkBlue")
@@ -50,29 +49,53 @@ function SignIn() {
     
     /*Password input validation*/
     function passwordValidation() {
-        const pwInput = document.getElementById("input-pw");
-        const pwValue = pwInput.value;
-        const messageContainerOne = document.getElementsByClassName("message-container-one")
+        const pwInput = document.getElementById("input-pw")
+        const pwValue = pwInput.value
+        const messageContainerOne = document.getElementById("message-container-one")
         if (pwValue === "") {
-            pwInput.classList.add("outline-0");
-            pwInput.classList.add("bg-black1");
-            pwInput.classList.add("border-gray1");
+            pwInput.classList.remove("outline-0")
+            pwInput.classList.remove("border-linkBlue")
+            pwInput.classList.remove("bg-black1")
+            pwInput.classList.remove("border-btnGreen");
+            pwInput.classList.remove("bg-btnGreen/30");
+
+            pwInput.classList.add("outline-none")
+            pwInput.classList.add("bg-black1")
+            pwInput.classList.add("border-borderGray1")
         } else {
             if (pwValue.length < 4 || pwValue.length > 12) {
-                pwInput.classList.add("outline-0");
-                pwInput.classList.add("border-linkBlue");
-                pwInput.classList.add("bg-black1");
+                pwInput.classList.remove("outline-none")
+                pwInput.classList.remove("bg-black1")
+                pwInput.classList.remove("border-borderGray1")
+                pwInput.classList.remove("border-btnGreen");
+                pwInput.classList.remove("bg-btnGreen/30");
+                pwInput.classList.remove("border-linkBlue");
+
+                pwInput.classList.add("outline-0")
+                pwInput.classList.add("border-linkBlue")
+                pwInput.classList.add("bg-black1")
                 pwValid = false;
             } else {
-                messageContainerOne.classList.add("collapse");
                 const numbers = new RegExp(/\d/);
                 const capitals = new RegExp(/[A-Z]/);
                 if (numbers.test(pwValue) && capitals.test(pwValue)) {
+                    pwInput.classList.remove("outline-0")
+                    pwInput.classList.remove("bg-black1")
+                    pwInput.classList.remove("border-borderGray1")
+                    pwInput.classList.remove("border-linkBlue")
+
                     pwInput.classList.add("outline-0");
                     pwInput.classList.add("border-btnGreen");
                     pwInput.classList.add("bg-btnGreen/30");
                     pwValid = true;
                 } else {
+                    pwInput.classList.remove("outline-none")
+                    pwInput.classList.remove("bg-black1")
+                    pwInput.classList.remove("border-borderGray1")
+                    pwInput.classList.remove("border-linkBlue")
+                    pwInput.classList.remove("border-btnGreen");
+                    pwInput.classList.remove("bg-btnGreen/30");
+
                     pwInput.classList.add("outline-0")
                     pwInput.classList.add("border-linkBlue");
                     pwInput.classList.add("bg-black1");
@@ -148,7 +171,7 @@ function SignIn() {
                 <h1 className="text-gray1 text-[24px] mb-4 font-light tracking-[-0.5px]">Create an account.</h1>
             </div>
 
-            <div className="message-container-one hidden justify-between items-center text-gray1 font-light text-sm border-errorRed/40 border-[1px] rounded-md mb-4 bg-errorRed/20 w-[280px] p-3">
+            <div id="message-container-one" className="message-container-one hidden justify-between items-center text-gray1 font-light text-sm border-errorRed/40 border-[1px] rounded-md mb-4 bg-errorRed/20 w-[280px] p-3">
                 <p className='message-one'></p>
                 <button onClick={btnOneHandler} className="btn-close-one text-errorRed font-thin text-lg" type="button"></button>
             </div>
@@ -160,15 +183,15 @@ function SignIn() {
 
             <div className="p-4 rounded-md w-[280px] min-h-[210px] bg-black2 flex flex-col border-[1px] border-borderGray2">
                 <form>
-                        <label className="text-left text-gray1 mb-2 text-sm font-normal" for='input-mail'>Enter mail address</label>
+                        <label className="text-left text-gray1 mb-2 text-sm font-normal" htmlFor='input-mail'>Enter mail address</label>
                         <input className="text-gray1 text-xs px-[12px] py-[5px] focus:outline-none focus:border-linkBlue border-[1px] rounded-md border-borderGray1 w-full bg-black1 mt-1 self-center block" onInput={mailValidation} id='input-mail' type='email' autoComplete='off'/>
                         <p className="text-errorYellow mt-1 text-xs font-thin" id='mail-error'></p>
 
                     <div className="mt-4 mb-2 flex items-center justify-between">
-                        <label className="text-gray1 text-sm font-normal" for='input-pw'>Enter password</label>
+                        <label className="text-gray1 text-sm font-normal" htmlFor='input-pw'>Enter password</label>
                         <a href="#" className="text-linkBlue text-xs">Forgot password?</a>
                     </div>
-                    <input className="text-gray1 text-xs px-[12px] py-[5px] focus:outline-none focus:border-linkBlue border-[1px] rounded-md border-borderGray1 w-full bg-black1 mt-1 self-center block" onInput={passwordValidation} id='input-pw' type='password'/>
+                    <input className="text-gray1 text-xs px-[12px] py-[5px] focus:outline-none focus:border-linkBlue border-[1px] rounded-md border-borderGray1 w-full bg-black1 mt-1 self-center block" onInput={passwordValidation} id="input-pw" type='password'/>
 
                     <p className="text-errorYellow mt-1 text-xs font-thin" id='pw-error'></p>
                     
