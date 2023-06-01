@@ -6,16 +6,40 @@ function SignIn() {
         const mailInput = document.getElementById("input-mail");
         const mailValue = mailInput.value;
         if (mailValue === "") {
+            mailInput.classList.remove("border-btnGreen")
+            mailInput.classList.remove("bg-btnGreen/30")
+            mailInput.classList.remove("bg-black1")
+            mailInput.classList.remove("border-linkBlue")
+            mailInput.classList.remove("focus:border-btnGreen")
+
+            mailInput.classList.add("focus:border-linkBlue")
             mailInput.classList.add("outline-0")
             mailInput.classList.add("bg-black1")
-            mailInput.classList.add("border-gray1")
+            mailInput.classList.add("border-borderGray1")
+
         } else {
             if (mailValue.includes(".com") && mailValue.includes("@")) {
+                mailInput.classList.remove("bg-black1")
+                mailInput.classList.remove("border-borderGray1")
+                mailInput.classList.remove("bg-black1")
+                mailInput.classList.remove("border-linkBlue")
+                mailInput.classList.remove("focus:border-linkBlue")
+
                 mailInput.classList.add("outline-0")
                 mailInput.classList.add("border-btnGreen")
                 mailInput.classList.add("bg-btnGreen/30")
+                mailInput.classList.add("focus:border-btnGreen")
                 mailValid = true;
             } else {
+                mailInput.classList.remove("bg-black1")
+                mailInput.classList.remove("border-borderGray1")
+                mailInput.classList.remove("bg-black1")
+                mailInput.classList.remove("border-linkBlue")
+                mailInput.classList.remove("focus:border-btnGreen")
+                mailInput.classList.remove("border-btnGreen")
+                mailInput.classList.remove("bg-btnGreen/30")
+
+                mailInput.classList.add("focus:border-linkBlue")
                 mailInput.classList.add("outline-0")
                 mailInput.classList.add("bg-black1")
                 mailInput.classList.add("border-linkBlue")
@@ -30,28 +54,28 @@ function SignIn() {
         const pwValue = pwInput.value;
         const messageContainerOne = document.getElementsByClassName("message-container-one")
         if (pwValue === "") {
-            pwInput.classList.add("outline-0")
-            pwInput.classList.add("bg-githubDarkGrey")
-            pwInput.classList.add("border border-githubGrey")
+            pwInput.classList.add("outline-0");
+            pwInput.classList.add("bg-black1");
+            pwInput.classList.add("border-gray1");
         } else {
             if (pwValue.length < 4 || pwValue.length > 12) {
-                pwInput.classList.add("outline-0")
-                pwInput.classList.add("border border-githubBlue")
-                pwInput.classList.add("bg-githubDarkGrey")
+                pwInput.classList.add("outline-0");
+                pwInput.classList.add("border-linkBlue");
+                pwInput.classList.add("bg-black1");
                 pwValid = false;
             } else {
                 messageContainerOne.classList.add("collapse");
                 const numbers = new RegExp(/\d/);
                 const capitals = new RegExp(/[A-Z]/);
                 if (numbers.test(pwValue) && capitals.test(pwValue)) {
-                    pwInput.classList.add("outline-0")
-                    pwInput.classList.add("border border-githubGreen")
-                    pwInput.classList.add("bg-githubGreenBg")
+                    pwInput.classList.add("outline-0");
+                    pwInput.classList.add("border-btnGreen");
+                    pwInput.classList.add("bg-btnGreen/30");
                     pwValid = true;
                 } else {
                     pwInput.classList.add("outline-0")
-                    pwInput.classList.add("border border-githubBlue")
-                    pwInput.classList.add("bg-githubDarkGrey")
+                    pwInput.classList.add("border-linkBlue");
+                    pwInput.classList.add("bg-black1");
                     pwValid = false;
                 }
             }
@@ -78,9 +102,9 @@ function SignIn() {
         const messageContainerTwo = document.querySelector(".message-container-two");
         const messageTwo = document.querySelector('.message-two');
         if (mailValue === "" || pwValue === "") { //Error message if either email or password not entered.
-            mailError.style.display = "none";
-            pwError.style.display = "none";
-            messageContainerOne.style.display = "flex";
+            mailError.classList.add("hidden");
+            pwError.classList.add("hidden");
+            messageContainerOne.classList.add("flex");
             messageOne.innerText = "Please enter the email and password."
         } else if (mailValid === false) { //Invalid email.
             mailError.style.display = "block";
